@@ -1,4 +1,4 @@
-# demoapp
+# gscourse
 
 A new Flutter project.
 
