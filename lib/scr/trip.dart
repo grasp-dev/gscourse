@@ -80,10 +80,16 @@ class TripContent extends StatelessWidget {
             children: [
               Expanded(
                 flex: 3,
-                child: Image.network(
-                  '$baseUrl${data[index].thumbnail}',
-                  fit: BoxFit.cover,
-                ),
+                child:
+                    data[index].thumbnail != '' && data[index].thumbnail != null
+                        ? Image.network(
+                            '$baseUrl${data[index].thumbnail}',
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            'assets/images/default-trip.jpg',
+                            fit: BoxFit.cover,
+                          ),
               ),
               Expanded(
                 flex: 4,

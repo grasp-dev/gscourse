@@ -4,6 +4,7 @@ import 'package:gscourse/scr/student_list.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../network/constant.dart';
 import 'contact.dart';
 import 'home.dart';
 import 'news.dart';
@@ -23,11 +24,13 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int uId = 0;
+  String profile = '';
 
   Future<void> loadUserId() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       uId = (prefs.getInt('userId') ?? 0);
+      profile = (prefs.getString('profile') ?? '');
     });
   }
 
@@ -56,7 +59,7 @@ class _DashboardState extends State<Dashboard> {
       home: DefaultTabController(
         length: 5,
         child: Scaffold(
-          appBar: customAppBar(context, uId),
+          appBar: customAppBar(context, uId, profile),
           body: const TabBarView(
             children: [
               HomePage(),
@@ -72,7 +75,7 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  PreferredSizeWidget customAppBar(context, int uId) {
+  PreferredSizeWidget customAppBar(context, int uId, String? profile) {
     return AppBar(
       leading: InkWell(
         onTap: () {
@@ -82,7 +85,15 @@ class _DashboardState extends State<Dashboard> {
             ),
           );
         },
-        child: Image.asset('assets/images/profile.png'),
+        child: profile != "" && profile != null
+            ? Image.network(
+                '$baseUrl$profile',
+                cacheHeight: 40,
+              )
+            : Image.asset(
+                'assets/images/profile.png',
+                cacheHeight: 40,
+              ),
       ),
       title: SizedBox(
         child: Image.asset('assets/images/logo.png'),

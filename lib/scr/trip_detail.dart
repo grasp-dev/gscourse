@@ -75,7 +75,7 @@ class _TripDetailState extends State<TripDetail> {
       children: [
         const SizedBox(height: 16),
         Card(
-          color: const Color.fromARGB(255, 255, 227, 144),
+          // color: const Color.fromARGB(255, 255, 227, 144),
           child: Padding(
             padding: const EdgeInsets.all(25),
             child: Column(

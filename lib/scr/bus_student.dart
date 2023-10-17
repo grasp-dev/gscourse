@@ -80,10 +80,16 @@ Widget studentList(Future<List<Student>> futureStudent) {
                     children: [
                       Expanded(
                         flex: 2,
-                        child: Image.network(
-                          '$baseUrl${snapshot.data![i].profile}',
-                          fit: BoxFit.cover,
-                        ),
+                        child: snapshot.data![i].profile != '' &&
+                                snapshot.data![i].profile != null
+                            ? Image.network(
+                                '$baseUrl${snapshot.data![i].profile}',
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                'assets/images/default-student.jpg',
+                                fit: BoxFit.cover,
+                              ),
                       ),
                       Expanded(
                         flex: 5,

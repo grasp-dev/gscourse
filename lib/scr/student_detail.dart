@@ -59,15 +59,29 @@ class BoxDetail extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(25),
       children: [
-        SizedBox(
-          width: double.infinity,
-          height: 100,
-          child: avatarPrifle(
-            student.profile != null
-                ? '$baseUrl${student.profile}'
-                : 'assets/images/student-profile.jpg',
-          ),
-        ),
+        student.profile != '' && student.profile != null
+            ? Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage('$baseUrl${student.profile}'),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              )
+            : Container(
+                width: 100,
+                height: 100,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/default-student.jpg'),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
         const SizedBox(height: 16),
         // Student Content
         Column(
@@ -75,7 +89,7 @@ class BoxDetail extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Card(
-                color: const Color.fromARGB(255, 255, 227, 144),
+                // color: const Color.fromARGB(255, 255, 227, 144),
                 child: Padding(
                   padding: const EdgeInsets.all(25),
                   child: Column(

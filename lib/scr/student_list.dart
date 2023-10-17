@@ -101,10 +101,16 @@ class StudentBox extends StatelessWidget {
             children: [
               Expanded(
                 flex: 3,
-                child: Image.network(
-                  '$baseUrl${student[index].profile}',
-                  fit: BoxFit.cover,
-                ),
+                child: student[index].profile != '' &&
+                        student[index].profile != null
+                    ? Image.network(
+                        '$baseUrl${student[index].profile}',
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        'assets/images/default-student.jpg',
+                        fit: BoxFit.cover,
+                      ),
               ),
               Expanded(
                 flex: 4,
