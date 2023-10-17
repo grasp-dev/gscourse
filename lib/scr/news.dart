@@ -70,12 +70,20 @@ class NewsList extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 3,
-                  child: Image.network(
-                    '$baseUrl${news[index].thumbnail}',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 80,
-                  ),
+                  child: news[index].thumbnail != '' &&
+                          news[index].thumbnail != null
+                      ? Image.network(
+                          '$baseUrl${news[index].thumbnail}',
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: 80,
+                        )
+                      : Image.asset(
+                          'assets/images/default-news.jpg',
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: 80,
+                        ),
                 ),
                 Expanded(
                   flex: 7,

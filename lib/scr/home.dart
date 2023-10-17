@@ -149,13 +149,20 @@ Widget listNews(Future<List<News>> fetchNews) {
                     children: [
                       Expanded(
                         flex: 3,
-                        child: Image.network(
-                          // '$imgUrl${news[index].thumbnail}',
-                          '$baseUrl${snapshot.data![i].thumbnail}',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: 80,
-                        ),
+                        child: snapshot.data![i].thumbnail != '' &&
+                                snapshot.data![i].thumbnail != null
+                            ? Image.network(
+                                '$baseUrl${snapshot.data![i].thumbnail}',
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: 80,
+                              )
+                            : Image.asset(
+                                'assets/images/default-news.jpg',
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: 80,
+                              ),
                       ),
                       Expanded(
                         flex: 7,
